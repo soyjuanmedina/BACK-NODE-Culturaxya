@@ -1,9 +1,9 @@
 import { createPool } from 'mysql2';
 
 export const connection = createPool({
-  host: '127.0.0.1',
+  host: 'sql8.freesqldatabase.com',
   port: 3306,
-  user: 'root',
-  password: 'root',
-  database: 'culturaxya'
+  user: 'sql8704762',
+  password: 'P5w4aW9vY2',
+  database: 'sql8704762'
 });
