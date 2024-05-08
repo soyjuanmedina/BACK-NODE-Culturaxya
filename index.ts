@@ -2,11 +2,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import routes from './src/routes';
+const cors = require('cors');
 
 // get express application
 const app = express();
 // body parser middleware
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api', routes);
 // define app port
