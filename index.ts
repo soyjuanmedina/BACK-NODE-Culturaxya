@@ -2,7 +2,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import routes from './src/routes';
-const cors = require('cors');
+import cors from 'cors';
 
 // get express application
 const app = express();
