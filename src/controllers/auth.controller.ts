@@ -33,9 +33,6 @@ export class AuthController {
     connection.getConnection((err: any, conn: PoolConnection) => {
       conn.query("SELECT * FROM users WHERE username = ?",
         [req.body.username], async (err, result: any) => {
-
-          console.log('req.body', req.body, result);
-
           if (!result.length) {
             res.status(500).send({
               message: 'User Not Found!',
@@ -52,6 +49,11 @@ export class AuthController {
               message: 'User Logged In!',
               data: {
                 accessToken,
+                user: {
+                  username: result[0].username,
+                  email: result[0].email,
+                  isRegistered: true
+                }
               },
             });
           } else {
