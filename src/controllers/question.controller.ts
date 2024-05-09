@@ -7,8 +7,6 @@ import { QuestionResponse } from '../models/question-response.model';
 
 const getAll = (req: Request, res: Response) => {
 
-
-
   let theme = req.query.theme
 
   let number = req.query.number
