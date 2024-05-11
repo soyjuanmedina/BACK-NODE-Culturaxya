@@ -5,11 +5,12 @@ import { QuestionResponse } from "../models/question-response.model";
 export class QuestionMapper {
 
   requestToResponse(request: QuestionRequest): QuestionResponse {
-    let response: QuestionResponse = new QuestionResponse();
-    response.explanation = request.explanation;
-    response.question = request.question;
-    response.theme = request.theme;
-    let answers: AnswerResponse[] = [
+    let response: QuestionResponse=new QuestionResponse();
+    response.explanation=request.explanation;
+    response.question=request.question;
+    response.theme=request.theme;
+    response.level=request.level;
+    let answers: AnswerResponse[]=[
       {
         answer: request.correct_answer,
         isCorret: true
@@ -27,14 +28,14 @@ export class QuestionMapper {
         isCorret: false
       }
     ]
-    response.answers = answers;
+    response.answers=answers;
     return response;
   }
 
   requestListToResponseList(request: QuestionRequest[]): QuestionResponse[] {
-    let response: QuestionResponse[] = [];
+    let response: QuestionResponse[]=[];
     for (let questionRequest of request) {
-      let questionResponse = this.requestToResponse(questionRequest);
+      let questionResponse=this.requestToResponse(questionRequest);
       response.push(questionResponse);
     }
     return response;

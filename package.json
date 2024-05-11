@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx tsx index.ts"
+    "start": "npm run copy-local-DB && npm run start-local",
+    "deploy": "npm run copy-prod-DB && git pull && git add . && git commit -m 'New' && git push",
+    "start-local": "npx tsx index.ts",
+    "copy-prod-DB": "xcopy /y src\\config\\db.prod.ts src\\config\\db.ts",
+    "copy-local-DB": "xcopy /y src\\config\\db.local.ts src\\config\\db.ts"
   },
   "keywords": [],
   "author": "",

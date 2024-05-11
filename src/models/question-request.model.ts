@@ -8,4 +8,5 @@ export class QuestionRequest {
   other_answer_2?: string;
   other_answer_3?: string;
   explanation?: string;
+  level?: string;
 }

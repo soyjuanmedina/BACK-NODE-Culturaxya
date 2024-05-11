@@ -6,4 +6,5 @@ export class QuestionResponse {
   question?: string;
   answers?: Array<AnswerResponse>
   explanation?: string;
+  level?: string;
 }
