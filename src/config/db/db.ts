@@ -1,6 +1,6 @@
 import { createPool } from 'mysql2';
 
-export const connection = createPool({
+export const connection=createPool({
   host: 'sql8.freesqldatabase.com',
   port: 3306,
   user: 'sql8704762',

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { QuestionRequest } from '../models/question-request.model';
-import { connection } from '../config/db';
+import { connection } from '../config/db/db';
 import { QueryError, PoolConnection } from 'mysql2';
 import { QuestionMapper } from '../mappers/question.mapper'
 import { QuestionResponse } from '../models/question-response.model';
@@ -14,8 +14,6 @@ const getAll=(req: Request, res: Response) => {
   let number=req.query.number||10
 
   let params=[]
-
-  console.log('req.query', theme, level, number, theme&&level);
 
   "select * from questions where theme = ? and level = ?"
 
@@ -31,8 +29,6 @@ const getAll=(req: Request, res: Response) => {
     query=query+" where level = ?"
     params=[level]
   }
-
-  console.log('query, params', query, params);
 
   let questionMapper: QuestionMapper=new QuestionMapper();
   connection.getConnection((err: any, conn: PoolConnection) => {
