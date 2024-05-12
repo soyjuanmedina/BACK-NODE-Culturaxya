@@ -28,7 +28,7 @@ export class AuthController {
               to: req.body.email,
               subject: 'Bienvenido a Culturaxya',
               text: 'Por favor, visita el siguiente link para confirmar tu mail '+uuid,
-              html: "<p>Por favor, visita el siguiente link para confirmar tu mail</p> <a href='https://culturaxya.com/confirmemail/"+uuid+"' style='background-color: blue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;'>Confirmar Mail</a>",
+              html: "<p>Por favor, visita el siguiente link para confirmar tu mail</p> <a href='https://culturaxya.com/confirm-email/"+uuid+"' style='background-color: blue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;'>Confirmar Mail</a>",
             };
 
             transporter.sendMail(mailOptions, function (error, info) {
