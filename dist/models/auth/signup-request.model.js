@@ -4,3 +4,4 @@ exports.SignupRequest = void 0;
 class SignupRequest {
 }
 exports.SignupRequest = SignupRequest;
+//# sourceMappingURL=signup-request.model.js.map

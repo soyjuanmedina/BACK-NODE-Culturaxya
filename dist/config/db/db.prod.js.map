@@ -1,0 +1,1 @@
+{"version":3,"file":"db.prod.js","sourceRoot":"","sources":["../../../src/config/db/db.prod.ts"],"names":[],"mappings":";;;;;;AAAA,wDAA+B;AAE/B,MAAM,iBAAiB,GAAG;IACxB,IAAI,EAAE,wCAAwC;IAC9C,IAAI,EAAE,IAAI;IACV,IAAI,EAAE,+BAA+B;IACrC,QAAQ,EAAE,cAAc;IACxB,QAAQ,EAAE,UAAU;CACrB,CAAC;AAEW,QAAA,UAAU,GAAG,IAAA,kBAAQ,EAAE,4GAA4G,EAAE,iBAAiB,CAAE,CAAA;AAErK,4BAA4B"}

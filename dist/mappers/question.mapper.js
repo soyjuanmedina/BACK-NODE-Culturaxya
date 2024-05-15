@@ -8,6 +8,7 @@ class QuestionMapper {
         response.explanation = request.explanation;
         response.question = request.question;
         response.theme = request.theme;
+        response.level = request.level;
         let answers = [
             {
                 answer: request.correct_answer,
@@ -39,3 +40,4 @@ class QuestionMapper {
     }
 }
 exports.QuestionMapper = QuestionMapper;
+//# sourceMappingURL=question.mapper.js.map

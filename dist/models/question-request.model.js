@@ -4,3 +4,4 @@ exports.QuestionRequest = void 0;
 class QuestionRequest {
 }
 exports.QuestionRequest = QuestionRequest;
+//# sourceMappingURL=question-request.model.js.map

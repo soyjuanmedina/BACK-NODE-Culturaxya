@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import questionController from '../controllers/question.controller';
+import { QuestionController } from '../controllers/question.controller';
 const questionRouter = Router();
+let questionController: QuestionController = new QuestionController();
 // specifies the endpoint and the method to call
-questionRouter.get('/', questionController.getAll);
+questionRouter.get( '/', questionController.getAll );
 // export the router
 export default questionRouter;
