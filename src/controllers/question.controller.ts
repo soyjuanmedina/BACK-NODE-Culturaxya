@@ -30,8 +30,8 @@ export class QuestionController {
       let questionMapper: QuestionMapper = new QuestionMapper();
       let responseList = questionMapper.requestListToResponseList( result );
       if ( responseList.length < Number( number ) ) {
-        res.status( 200 ).send( {
-          message: 'No hay suficientes preguntas de este nivel',
+        res.status( 206 ).send( {
+          message: 'NOT_ENOUGH',
           result: responseList
         } );
       }
