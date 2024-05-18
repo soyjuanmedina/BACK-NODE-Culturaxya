@@ -5,6 +5,7 @@ import { transporter } from '../config/mail';
 import { PoolConnection } from "mysql2";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
+import { User } from "../models/user.model";
 
 export class AuthController {
 
@@ -67,17 +68,19 @@ export class AuthController {
         } );
 
       } else if ( await bcrypt.compare( req.body.password, result[0].password ) ) {
+        let user: User = result[0];
         const tokenPayload = {
-          email: result[0].email,
+          email: user.email,
         };
+        delete user.password;
+        delete user.uuid;
         const accessToken = jwt.sign( tokenPayload, 'SECRET' );
         res.status( 201 ).json( {
           message: 'User Logged In!',
           data: {
             accessToken,
             user: {
-              username: result[0].username,
-              email: result[0].email,
+              ...user,
               isRegistered: true
             }
           },
