@@ -18,13 +18,13 @@ export class QuestionController {
       let result = null;
       if ( theme && level ) {
         result = await connection<any[]>
-          `select * from questions where theme = ${theme} and level = ${level}`
+          `select * from questions where theme = ${theme} and level = ${level} and checked = 1`
       } else if ( theme ) {
         result = await connection<any[]>
-          `select * from questions where theme = ${theme}`
+          `select * from questions where theme = ${theme} and checked = 1`
       } else if ( level ) {
         result = await connection<any[]>
-          `select * from questions where theme = ${level}`
+          `select * from questions where theme = ${level} and checked = 1`
       }
 
       let questionMapper: QuestionMapper = new QuestionMapper();
@@ -55,6 +55,29 @@ export class QuestionController {
           result: response
         } );
       }
+    } catch ( error ) {
+      res.status( 500 ).send( {
+        message: 'INTERNAL SERVER ERROR: ' + error,
+        result: false
+      } );
+    }
+
+  }
+
+  public async propose ( req: Request, res: Response ) {
+    let result = null;
+    try {
+      result = await connection<any[]>
+        `insert into questions (correct_answer,explanation,other_answer_1,other_answer_2,other_answer_3,question,level,theme,checked) 
+        values (${req.body.correctAnswer}, ${req.body.explanation},
+          ${req.body.otherAnswer1},${req.body.otherAnswer2},
+          ${req.body.otherAnswer3},${req.body.question},
+          ${req.body.level},${req.body.theme},
+          0)`
+      res.status( 200 ).send( {
+        message: 'OK',
+        result: result
+      } );
     } catch ( error ) {
       res.status( 500 ).send( {
         message: 'INTERNAL SERVER ERROR: ' + error,
