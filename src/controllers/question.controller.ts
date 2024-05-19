@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { QuestionRequest } from '../models/question-request.model';
+import { transporter } from '../config/mail';
 import { connection } from '../config/db/db';
-import { QueryError, PoolConnection } from 'mysql2';
 import { QuestionMapper } from '../mappers/question.mapper'
 import { QuestionResponse } from '../models/question-response.model';
 export class QuestionController {
@@ -74,6 +73,16 @@ export class QuestionController {
           ${req.body.otherAnswer3},${req.body.question},
           ${req.body.level},${req.body.theme},
           0)`
+
+      var mailOptions = {
+        from: 'culturaxya@gmail.com',
+        to: 'soyjuanmedina@gmail.com',
+        subject: 'Nueva pregunta propuesta en Culturaxya',
+        text: 'Se ha propuesto una nueva pregunta en Culturaxya, por favor revísala para activarla'
+      };
+
+      transporter.sendMail( mailOptions );
+
       res.status( 200 ).send( {
         message: 'OK',
         result: result

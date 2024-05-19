@@ -3,7 +3,7 @@ export class User {
   email: string;
   password: string;
   username: string;
-  uuid: number;
+  uuid: string;
   active: boolean;
   role: string;
   isRegistered: boolean

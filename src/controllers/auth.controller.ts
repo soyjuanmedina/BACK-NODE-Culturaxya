@@ -99,6 +99,55 @@ export class AuthController {
     }
   }
 
+  public async resendActivationEmail ( req: Request, res: Response ) {
+    try {
+      const result = await connection<any[]>
+        ` SELECT *
+      FROM users
+      WHERE username = ${req.body.username}
+    `
+      if ( !result.length ) {
+        res.status( 500 ).send( {
+          message: 'User Not Found',
+          result: false
+        } );
+
+      } else {
+        let user: User = result[0];
+        var mailOptions = {
+          from: 'culturaxya@gmail.com',
+          to: user.email,
+          subject: 'Bienvenido a Culturaxya',
+          text: 'Por favor, visita el siguiente link para confirmar tu mail ' + user.uuid,
+          html: "<p>Por favor, visita el siguiente link para confirmar tu mail</p> <a href='https://culturaxya.com?uuid=" + user.uuid + "' style='background-color: blue; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;'>Confirmar Mail</a>",
+        };
+
+        console.log( 'user.email', user.email, user.uuid );
+
+        transporter.sendMail( mailOptions, function ( error, info ) {
+          if ( error ) {
+            console.log( 'Email fail: ' + error );
+            res.status( 200 ).send( {
+              message: 'No se ha podido enviar el correo de confirmación',
+              result: false
+            } );
+          } else {
+            console.log( 'Email sent: ' + info.response );
+            res.status( 200 ).send( {
+              message: 'OK',
+              result: true
+            } );
+          }
+        } );
+      }
+    } catch ( error ) {
+      res.status( 500 ).send( {
+        message: 'INTERNAL SERVER ERROR: ' + error,
+        result: false
+      } );
+    }
+  }
+
   public async confirmEmail ( req: Request, res: Response ) {
 
     const result = await connection<any[]>`SELECT * FROM users WHERE uuid = ${req.body.uuid}`
